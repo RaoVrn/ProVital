@@ -1,0 +1,22 @@
+body, .App {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #222;
+}
+
+@import './components/Header.scss';
+@import './components/HeroSection.scss';
+@import './components/CardGrid.scss';
+
+@media (max-width: 768px) {
+  .header nav ul {
+    flex-direction: column;
+  }
+  .hero-section {
+    flex-direction: column;
+  }
+  .card-grid .cards {
+    flex-direction: column;
+  }
+}

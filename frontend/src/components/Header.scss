@@ -1,0 +1,146 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 1.5rem;
+
+    img {
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .mobile-menu-button {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+
+  .nav-menu {
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 2rem;
+    }
+
+    li {
+      a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        
+        &:hover {
+          color: #0088cc;
+        }
+      }
+    }
+
+    .login-dropdown {
+      position: relative;
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        padding: 0;
+        color: #333;
+
+        &:hover {
+          color: #0088cc;
+        }
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        min-width: 200px;
+        margin-top: 0.5rem;
+
+        .dropdown-section {
+          padding: 0.5rem 0;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid #eee;
+          }
+
+          h4 {
+            margin: 0 0 0.5rem;
+            color: #666;
+          }
+
+          a {
+            display: block;
+            padding: 0.5rem 0;
+            color: #333;
+            text-decoration: none;
+
+            &:hover {
+              color: #0088cc;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-button {
+      display: block;
+    }
+
+    .nav-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 1rem;
+      border-top: 1px solid #eee;
+
+      &.active {
+        display: block;
+      }
+
+      ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .login-dropdown .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border: 1px solid #eee;
+        margin-top: 1rem;
+      }
+    }
+  }
+}

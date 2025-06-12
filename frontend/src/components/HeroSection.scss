@@ -1,0 +1,123 @@
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  overflow: hidden;
+
+  .background-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+
+    .carousel-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    color: #333;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0 0 1rem;
+
+      span {
+        color: #0088cc;
+      }
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 0 0 2rem;
+      color: #666;
+    }
+
+    .search-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 1rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      .search-input {
+        position: relative;
+
+        input {
+          width: 100%;
+          padding: 0.8rem 1rem 0.8rem 2.5rem;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          font-size: 1rem;
+
+          &:focus {
+            outline: none;
+            border-color: #0088cc;
+          }
+        }
+
+        svg {
+          position: absolute;
+          left: 0.8rem;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #666;
+        }
+      }
+
+      button {
+        background: #0088cc;
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background: #006699;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 120px 1rem 2rem;
+
+    .hero-content {
+      padding: 1.5rem;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .search-section {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
