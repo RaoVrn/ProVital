@@ -1,0 +1,130 @@
+.image-carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  overflow: hidden;
+  z-index: 1;
+
+  .column {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+
+    .scroll-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    &.column-1 .scroll-content {
+      animation: scrollDown 40s linear infinite;
+    }
+
+    &.column-2 .scroll-content {
+      animation: scrollUp 40s linear infinite;
+    }
+
+    .image-wrapper {
+      width: 100%;
+      height: 240px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.01); // Prevent any subpixel gaps
+      }
+    }
+
+    // Pause animation on hover
+    &:hover .scroll-content {
+      animation-play-state: paused;
+    }
+  }
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  .grid-column {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+
+    .scrolling-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    &.column-1 .scrolling-content {
+      animation: scrollDown 30s linear infinite;
+    }
+
+    &.column-2 .scrolling-content {
+      animation: scrollUp 30s linear infinite;
+    }
+
+    .image-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      height: 354px;
+      max-width: 247px;
+      margin: 0 auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.01); // Prevent any subpixel gaps
+      }
+    }
+
+    &:hover .scrolling-content {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(-100% + 354px));
+  }
+}
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(calc(-100% + 354px));
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

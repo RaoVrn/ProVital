@@ -27,16 +27,18 @@ function HeroSection() {
 
   return (
     <section className="hero-section">
-      <ImageCarousel images={carouselImages} />
+      <div className="image-section">
+        <ImageCarousel images={carouselImages} />
+      </div>
       
-      <div className="hero-content">
+      <div className="content-section">
         <h1>
           Book an appointment with{' '}
           <span className="highlight">lifestyle medicine</span> experts
         </h1>
         <p>Optimize your lifestyle and reverse chronic diseases.</p>
         
-        <form onSubmit={handleSearch} className="search-section">
+        <form onSubmit={handleSearch} className="search-form">
           <div className="search-input">
             <FontAwesomeIcon icon={faSearch} />
             <input

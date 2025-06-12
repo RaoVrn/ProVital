@@ -1,122 +1,150 @@
 .hero-section {
-  position: relative;
-  height: 100vh;
-  min-height: 600px;
   display: flex;
-  align-items: center;
-  padding-top: 80px;
+  min-height: calc(100vh - 60px); /* Subtract header height */
+  background-color: #fff;
+  position: relative;
   overflow: hidden;
 
-  .background-carousel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-
-    .carousel-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-
-      &.active {
-        opacity: 1;
-      }
-    }
+  .image-section {
+    width: 50%;
+    height: 100vh;
+    min-height: 700px;
+    position: relative;
   }
 
-  .hero-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    color: #333;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  .content-section {
+    width: 50%;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     h1 {
-      font-size: 2.5rem;
-      margin: 0 0 1rem;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 1rem;
+      line-height: 1.2;
 
-      span {
-        color: #0088cc;
+      .highlight {
+        color: #00a3c4;
       }
     }
 
     p {
-      font-size: 1.2rem;
-      margin: 0 0 2rem;
+      font-size: 1.25rem;
       color: #666;
+      margin-bottom: 2rem;
     }
 
-    .search-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr auto;
-      gap: 1rem;
+    .search-form {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
 
       .search-input {
         position: relative;
+        flex: 1;
 
         input {
           width: 100%;
-          padding: 0.8rem 1rem 0.8rem 2.5rem;
-          border: 1px solid #ddd;
-          border-radius: 6px;
-          font-size: 1rem;
+          padding: 12px 12px 12px 40px;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          font-size: 0.95rem;
 
           &:focus {
             outline: none;
-            border-color: #0088cc;
+            border-color: #00a3c4;
+          }
+
+          &::placeholder {
+            color: #999;
           }
         }
 
         svg {
           position: absolute;
-          left: 0.8rem;
+          left: 12px;
           top: 50%;
           transform: translateY(-50%);
-          color: #666;
+          color: #999;
         }
       }
 
       button {
-        background: #0088cc;
+        background: #00a3c4;
         color: white;
         border: none;
-        padding: 0.8rem 2rem;
-        border-radius: 6px;
+        border-radius: 8px;
+        padding: 12px 24px;
         font-size: 1rem;
+        font-weight: 500;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background 0.2s;
+        white-space: nowrap;
 
         &:hover {
-          background: #006699;
+          background: #0089a7;
         }
       }
     }
   }
 
-  @media (max-width: 768px) {
-    height: auto;
-    padding: 120px 1rem 2rem;
+  // Bottom gradient wave
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(90deg, #e779c1 0%, #d53f8c 100%);
+    clip-path: polygon(0 100%, 100% 100%, 100% 0);
+    z-index: 2;
+  }
 
-    .hero-content {
-      padding: 1.5rem;
+  // Bottom yellow strip
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(90deg, #ffd580 0%, #f6ad55 100%);
+    z-index: 1;
+  }
+}
 
-      h1 {
-        font-size: 2rem;
-      }
+@media (max-width: 992px) {
+  .hero-section {
+    flex-direction: column;
 
-      .search-section {
-        grid-template-columns: 1fr;
+    .image-section,
+    .content-section {
+      width: 100%;
+    }
+
+    .image-section {
+      height: 50vh;
+      min-height: 400px;
+    }
+
+    .content-section {
+      padding: 30px 20px;
+    }
+
+    .search-form {
+      flex-direction: column;
+
+      button {
+        width: 100%;
       }
     }
   }

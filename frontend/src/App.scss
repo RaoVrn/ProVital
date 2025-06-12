@@ -1,8 +1,58 @@
-body, .App {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, .App {
   font-family: 'Inter', sans-serif;
-  background: #fff;
-  color: #222;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+  background-color: #fff;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// Container styles
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+// Button styles
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #00A3C4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+  
+  &:hover {
+    background: #0089a7;
+  }
+}
+
+// Content padding to account for the fixed header
+main {
+  flex: 1;
+  padding-top: 0; // Remove spacing between header and hero section
 }
 
 @import './components/Header.scss';

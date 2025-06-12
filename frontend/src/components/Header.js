@@ -21,7 +21,7 @@ function Header() {
       <div className="header-container">
         <Link to="/" className="logo">
           <img src="/images/logo.svg" alt="ProVital" />
-          
+          ProVital
         </Link>
 
         <div className="mobile-menu-button" onClick={toggleMenu}>
@@ -39,21 +39,25 @@ function Header() {
             <li className="login-dropdown">
               <button onClick={toggleDropdown}>
                 Login / Signup
+                {isDropdownOpen && (
+                  <div className="dropdown-menu">
+                    <div className="dropdown-section">
+                      <h4>Doctor</h4>
+                      <div className="dropdown-links">
+                        <Link to="/doctor/login">Login</Link>
+                        <Link to="/doctor/signup">Sign up</Link>
+                      </div>
+                    </div>
+                    <div className="dropdown-section">
+                      <h4>Patients</h4>
+                      <div className="dropdown-links">
+                        <Link to="/patient/login">Login</Link>
+                        <Link to="/patient/signup">Sign up</Link>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </button>
-              {isDropdownOpen && (
-                <div className="dropdown-menu">
-                  <div className="dropdown-section">
-                    <h4>Doctor</h4>
-                    <Link to="/doctor/login">Login</Link>
-                    <Link to="/doctor/signup">Sign up</Link>
-                  </div>
-                  <div className="dropdown-section">
-                    <h4>Patients</h4>
-                    <Link to="/patient/login">Login</Link>
-                    <Link to="/patient/signup">Sign up</Link>
-                  </div>
-                </div>
-              )}
             </li>
           </ul>
         </nav>
