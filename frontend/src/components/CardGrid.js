@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faBed, faRunning, faBrain, faUsers, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
+import { 
+  faHeart, 
+  faBed, 
+  faRunning, 
+  faBrain, 
+  faUsers, 
+  faShieldAlt,
+  faChevronLeft,
+  faChevronRight
+} from '@fortawesome/free-solid-svg-icons';
 import './CardGrid.scss';
 
 function CardGrid() {
+  const [activeCategory, setActiveCategory] = useState('Nutrition');
+  const [isAnimating, setIsAnimating] = useState(false);
+  const sliderRef = useRef(null);
+
   const cards = [
     {
       title: 'Nutrition',
@@ -49,31 +62,104 @@ function CardGrid() {
     }
   ];
 
+  useEffect(() => {
+    if (sliderRef.current) {
+      const activeIndex = cards.findIndex(card => card.title === activeCategory);
+      const offset = activeIndex * 493;
+      sliderRef.current.style.transform = `translateX(-${offset}px)`;
+    }
+  }, [activeCategory]);
+
+  const handleSlide = (newCategory) => {
+    if (isAnimating || newCategory === activeCategory) return;
+    setIsAnimating(true);
+    setActiveCategory(newCategory);
+    setTimeout(() => setIsAnimating(false), 300);
+  };
+
+  const handlePrevious = () => {
+    if (isAnimating) return;
+    const currentIndex = cards.findIndex(card => card.title === activeCategory);
+    const newIndex = currentIndex === 0 ? cards.length - 1 : currentIndex - 1;
+    handleSlide(cards[newIndex].title);
+  };
+
+  const handleNext = () => {
+    if (isAnimating) return;
+    const currentIndex = cards.findIndex(card => card.title === activeCategory);
+    const newIndex = currentIndex === cards.length - 1 ? 0 : currentIndex + 1;
+    handleSlide(cards[newIndex].title);
+  };
+
   return (
     <section className="card-grid">
       <div className="container">
-        <div className="section-title">
-          <h2>
-            <span>Lifestyle as medicine:</span> The six pillars
-          </h2>
+        <div className="header-wrapper">
+          <div className="section-header">
+            <h2>HOW IT WORKS</h2>
+            <div className="title-wrapper">
+              <h3>
+                <span className="highlight">Lifestyle as medicine:</span> The six pillars
+              </h3>
+            </div>
+          </div>
+          
+          <div className="navigation-buttons">
+            <button 
+              className="nav-arrow prev" 
+              onClick={handlePrevious}
+              disabled={isAnimating}
+              aria-label="Previous"
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+            <button 
+              className="nav-arrow next" 
+              onClick={handleNext}
+              disabled={isAnimating}
+              aria-label="Next"
+            >
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+          </div>
         </div>
 
-        <div className="grid">
-          {cards.map((card, index) => (
-            <div key={index} className="card">
-              <div className="card-image">
-                <img src={card.image} alt={card.title} />
-                <div className="metric">
-                  <FontAwesomeIcon icon={card.icon} />
-                  <span>{card.metric}</span>
-                </div>
-              </div>
-              <div className="card-content">
-                <h3>{card.title}</h3>
-                <p>{card.description}</p>
-              </div>
+        <div className="content-section">
+          <div className="navigation-tabs">
+            {cards.map((card) => (
+              <button
+                key={card.title}
+                className={`nav-tab ${card.title === activeCategory ? 'active' : ''}`}
+                onClick={() => handleSlide(card.title)}
+              >
+                {card.title}
+              </button>
+            ))}
+          </div>
+
+          <div className="carousel-container">
+            <div className="cards-row" ref={sliderRef}>
+              {/* Duplicate cards array to create infinite scroll effect */}
+              {[...cards, ...cards].map((card, index) => (
+                <article 
+                  key={`${card.title}-${index}`} 
+                  className={`card ${card.title === activeCategory ? 'active' : ''}`}
+                >
+                  <div className="card-image">
+                    <img src={card.image} alt={card.title} />
+                    <div className="metric">
+                      <FontAwesomeIcon icon={card.icon} />
+                      <span>{card.metric}</span>
+                    </div>
+                  </div>
+                  <div className="card-content">
+                    <h4>{card.title}</h4>
+                    <p>{card.description}</p>
+                  </div>
+                </article>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
