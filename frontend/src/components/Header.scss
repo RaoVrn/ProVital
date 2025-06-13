@@ -4,13 +4,15 @@
   left: 0;
   right: 0;
   background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  height: 92px;
 
   .header-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0.75rem 1rem;
+    height: 100%;
+    padding: 0 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,13 +22,41 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    font-size: 1.25rem;
+    height: 36px;
+    gap: 8px;
 
-    img {
-      height: 24px;
-      margin-right: 0.5rem;
+    .logo-container {
+      position: relative;
+      padding: 6px;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        z-index: -1;
+      }
+    }
+
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-text {
+      width: 78px;
+      height: 29px;
+      color: #1A1A1A;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 29px;
     }
   }
 
@@ -41,9 +71,136 @@
   }
 
   .nav-menu {
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      &.separator {
+        color: #E0E0E0;
+        font-size: 16px;
+        line-height: 1;
+      }
+
+      a {
+        text-decoration: none;
+        color: #4D4D4D;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 8px 0;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+
+        &:hover {
+          color: #000000;
+        }
+      }
+    }
+
+    .login-dropdown {
+      position: relative;
+      
+      button {
+        display: flex;
+        align-items: center;
+        background: none;
+        border: none;
+        color: #4D4D4D;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        gap: 4px;
+        
+        &:hover {
+          color: #000000;
+        }
+
+        &::after {
+          content: '';
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border: solid #4D4D4D;
+          border-width: 0 1.5px 1.5px 0;
+          transform: rotate(45deg);
+          margin-top: -4px;
+          transition: border-color 0.2s ease;
+        }
+
+        &:hover::after {
+          border-color: #000000;
+        }
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 214px;
+        background: #FFFFFF;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        padding: 16px;
+        margin-top: 8px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -8px;
+          right: 20px;
+          width: 16px;
+          height: 16px;
+          background: white;
+          transform: rotate(45deg);
+          box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.04);
+        }.auth-links {
+            .auth-section {
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              padding: 8px 0;
+              
+              &:not(:last-child) {
+                margin-bottom: 0;
+                border-bottom: 1px solid #E6E6E6;
+              }
+
+              span {
+                color: #1A1A1A;
+                font-size: 14px;
+                font-weight: 500;
+                min-width: 60px;
+              }
+
+              a {
+                color: #2196F3;
+                font-size: 13px;
+                text-decoration: none;
+                font-weight: 400;
+
+                &:hover {
+                  text-decoration: underline;
+                }
+
+                &:not(:last-child) {
+                  margin-right: 16px;
+                }
+              }
+            }
+        }
+      }
+    }
+
     @media (max-width: 992px) {
       position: fixed;
-      top: 60px;
+      top: 92px;
       left: 0;
       right: 0;
       background: #fff;
