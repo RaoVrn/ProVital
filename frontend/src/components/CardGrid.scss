@@ -1,6 +1,6 @@
 .card-grid {
   padding: 3rem 0;
-  background: #fff;
+  background: #f8f9fa;
 
   .container {
     max-width: 1200px;
@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .section-header {
@@ -23,21 +23,25 @@
       color: #666;
       font-size: 14px;
       font-weight: 500;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
       letter-spacing: 0.5px;
     }
 
     .title-wrapper {
       h3 {
-        font-size: 28px;
-        color: #333;
-        font-weight: 500;
+        font-size: 32px;
         margin: 0;
         line-height: 1.2;
+        font-weight: normal;
+        color: #666; /* Light color for normal text */
 
         .highlight {
-          color: #ff6b6b;
-          font-weight: 400;
+          font-weight: 600;
+          font-style: italic;
+          background: linear-gradient(90deg, #D96E6C 0%, #F1CA72 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
       }
     }
@@ -51,7 +55,7 @@
     .nav-arrow {
       width: 40px;
       height: 40px;
-      border: 1px solid #eee;
+      border: 1px solid #e0e0e0;
       border-radius: 50%;
       background: white;
       display: flex;
@@ -72,7 +76,7 @@
 
       svg {
         font-size: 14px;
-        color: #666;
+        color: #333;
       }
     }
   }
@@ -89,21 +93,24 @@
 
     .nav-tab {
       padding: 8px 20px;
-      border: none;
-      background: transparent;
-      border-radius: 20px;
-      font-size: 14px;
-      color: #666;
+      border: 1px solid #e0e0e0;
+      background: white;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #555;
       cursor: pointer;
       transition: all 0.2s ease;
 
       &:hover {
         color: #333;
+        border-color: #ccc;
       }
 
       &.active {
         background: #000;
         color: white;
+        border-color: #000;
       }
     }
   }
@@ -111,31 +118,36 @@
   .carousel-container {
     width: 100%;
     overflow: hidden;
+    position: relative;
   }
 
   .cards-row {
     display: flex;
     transition: transform 0.3s ease;
     gap: 24px;
+    padding: 10px 0 30px;
 
     .card {
-      width: 493px;
-      min-width: 493px;
-      height: 485px;
-      opacity: 0.5;
+      width: 380px;
+      min-width: 380px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      opacity: 1;
       transition: all 0.3s ease;
+      height: auto;
+      margin-bottom: 20px;
 
       &.active {
         opacity: 1;
       }
 
       .card-image {
-        width: 493px;
-        height: 320px;
+        width: 100%;
+        height: 240px;
         position: relative;
-        border-radius: 12px;
         overflow: hidden;
-        margin-bottom: 1.5rem;
 
         img {
           width: 100%;
@@ -149,35 +161,38 @@
           bottom: 16px;
           left: 16px;
           background: rgba(255, 255, 255, 0.95);
-          padding: 8px 16px;
+          padding: 6px 14px;
           border-radius: 20px;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
           font-size: 14px;
+          font-weight: 500;
+          color: #333;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
           svg {
-            color: #ff6b6b;
+            color: #FF6B6B;
             font-size: 14px;
           }
         }
       }
 
       .card-content {
-        padding: 0;
+        padding: 24px;
+        background: white;
 
         h4 {
-          font-size: 24px;
+          font-size: 20px;
           color: #333;
           margin: 0 0 12px;
-          font-weight: 500;
+          font-weight: 600;
         }
 
         p {
           color: #666;
-          font-size: 16px;
-          line-height: 1.5;
+          font-size: 15px;
+          line-height: 1.6;
           margin: 0;
         }
       }
@@ -200,20 +215,9 @@
       align-self: center;
     }
 
-    .carousel-container {
-      margin: 0 -1rem;
-      padding: 0 1rem;
-    }
-
-    .cards-row {
-      .card {
-        width: 100%;
-        min-width: 100%;
-
-        .card-image {
-          width: 100%;
-        }
-      }
+    .cards-row .card {
+      width: 320px;
+      min-width: 320px;
     }
   }
 }

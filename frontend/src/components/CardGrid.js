@@ -34,30 +34,30 @@ function CardGrid() {
     },
     {
       title: 'Restorative sleep',
-      description: 'Consistent, quality sleep is essential for optimal brain function and physical health.',
+      description: 'Consistent, quality sleep is essential for cognitive function and physical health.',
       image: '/images/i3.jpg',
       metric: '8 hours',
       icon: faBed
     },
     {
       title: 'Stress management',
-      description: 'Physical and psychological techniques aid in stress reduction and overall health.',
+      description: 'Effective stress management techniques are crucial for mental well-being and overall health.',
       image: '/images/i4.jpg',
-      metric: '15 min',
+      metric: '60 bpm',
       icon: faBrain
     },
     {
       title: 'Social connection',
-      description: 'Strong social connections are associated with a longer life and better physical and mental health.',
+      description: 'Strong social connections are associated with a lower risk of many chronic diseases and enhanced mental health.',
       image: '/images/i5.jpg',
-      metric: '3 friends',
+      metric: 'Feeling better',
       icon: faUsers
     },
     {
       title: 'Substance abuse',
-      description: 'Avoiding harmful substances and managing usage helps maintain optimal physical and mental well-being.',
+      description: 'Avoiding tobacco, limiting alcohol use, and abstaining from harmful substances are vital for long-term health.',
       image: '/images/i6.jpg',
-      metric: '0 days',
+      metric: '62 days',
       icon: faShieldAlt
     }
   ];
@@ -65,7 +65,10 @@ function CardGrid() {
   useEffect(() => {
     if (sliderRef.current) {
       const activeIndex = cards.findIndex(card => card.title === activeCategory);
-      const offset = activeIndex * 493;
+      // Update the offset calculation using the new card width (380px) plus the gap (24px)
+      const cardWidth = 380;
+      const cardGap = 24;
+      const offset = activeIndex * (cardWidth + cardGap);
       sliderRef.current.style.transform = `translateX(-${offset}px)`;
     }
   }, [activeCategory]);
@@ -89,6 +92,25 @@ function CardGrid() {
     const currentIndex = cards.findIndex(card => card.title === activeCategory);
     const newIndex = currentIndex === cards.length - 1 ? 0 : currentIndex + 1;
     handleSlide(cards[newIndex].title);
+  };
+
+  const getIconColor = (title) => {
+    switch(title) {
+      case 'Nutrition':
+        return '#1E88E5'; // Blue
+      case 'Physical activity':
+        return '#FF7043'; // Orange
+      case 'Restorative sleep':
+        return '#43A047'; // Green
+      case 'Stress management':
+        return '#29B6F6'; // Light Blue
+      case 'Social connection':
+        return '#FF5252'; // Red
+      case 'Substance abuse':
+        return '#FFC107'; // Yellow
+      default:
+        return '#FF6B6B';
+    }
   };
 
   return (
@@ -146,9 +168,8 @@ function CardGrid() {
                   className={`card ${card.title === activeCategory ? 'active' : ''}`}
                 >
                   <div className="card-image">
-                    <img src={card.image} alt={card.title} />
-                    <div className="metric">
-                      <FontAwesomeIcon icon={card.icon} />
+                    <img src={card.image} alt={card.title} />                    <div className="metric">
+                      <FontAwesomeIcon icon={card.icon} style={{ color: getIconColor(card.title) }} />
                       <span>{card.metric}</span>
                     </div>
                   </div>
