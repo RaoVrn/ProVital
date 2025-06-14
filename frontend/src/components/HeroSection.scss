@@ -85,7 +85,7 @@
           left: -60px;
           right: -60px;
           height: 18px;
-          background: linear-gradient(90deg, #F0C971 0%, #E5688C 100%);
+          background: linear-gradient(90deg, #F0C971 100%, #E5688C 100%);
           transform: translateY(-50%) rotate(-5deg);
           border-radius: 9px;
           z-index: -1;
@@ -142,10 +142,8 @@
           transform: translateY(-50%);
           color: #999;
         }
-      }
-
-      button {
-        background: #00a3c4;
+      }      button {
+        background: linear-gradient(to right, #7CD0A2, #4683D0);
         color: white;
         border: none;
         border-radius: 8px;
@@ -153,7 +151,7 @@
         font-size: 1rem;
         font-weight: 500;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: transform 0.2s, box-shadow 0.2s;
         white-space: nowrap;
 
         @media (max-width: 768px) {
@@ -162,43 +160,33 @@
         }
 
         &:hover {
-          background: #0089a7;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
       }
     }
+  }  // Diagonal gradient line
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 18px;
+    left: -100vw;
+    right: -100vw;
+    width: 300vw;
+    height: 50px;
+    background: linear-gradient(to right, #F0C971 40%, #E5688C 100%);
+    transform: rotate(-2deg);
+    transform-origin: center;
+    z-index: 10;
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
-  // Bottom gradient wave
+  // Bottom gradient line
   &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background: linear-gradient(90deg, #e779c1 0%, #d53f8c 100%);
-    clip-path: polygon(0 100%, 100% 100%, 100% 0);
-    z-index: 2;
-
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-
-  // Bottom yellow strip
-  &:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    background: linear-gradient(90deg, #ffd580 0%, #f6ad55 100%);
-    z-index: 1;
-
-    @media (max-width: 768px) {
-      display: none;
-    }
+    display: none;
   }
 }
 

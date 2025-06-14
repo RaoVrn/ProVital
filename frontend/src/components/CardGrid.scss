@@ -33,12 +33,10 @@
         margin: 0;
         line-height: 1.2;
         font-weight: normal;
-        color: #666; /* Light color for normal text */
-
-        .highlight {
+        color: #666; /* Light color for normal text */        .highlight {
           font-weight: 600;
           font-style: italic;
-          background: linear-gradient(90deg, #D96E6C 0%, #F1CA72 100%);
+          background: linear-gradient(to right, #F0C971, #E5688C);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
