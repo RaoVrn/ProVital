@@ -58,14 +58,15 @@
       font-weight: 600;
       line-height: 29px;
     }
-  }
-
-  .mobile-menu-button {
+  }  .mobile-menu-button {
     display: none;
     cursor: pointer;
     font-size: 1.5rem;
+    color: #333;
+    z-index: 1001;
+    position: relative;
 
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
       display: block;
     }
   }
@@ -142,154 +143,183 @@
       .dropdown-menu {
         position: absolute;
         top: 100%;
-        right: 0;
-        width: 214px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 320px;
         background: #FFFFFF;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        padding: 16px;
+        padding: 20px;
         margin-top: 8px;
 
         &::before {
           content: '';
           position: absolute;
           top: -8px;
-          right: 20px;
+          left: 50%;
+          transform: translateX(-50%) rotate(45deg);
           width: 16px;
           height: 16px;
           background: white;
-          transform: rotate(45deg);
           box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.04);
-        }.auth-links {
-            .auth-section {
-              display: flex;
-              align-items: center;
-              gap: 16px;
-              padding: 8px 0;
-              
-              &:not(:last-child) {
-                margin-bottom: 0;
-                border-bottom: 1px solid #E6E6E6;
-              }
+        }
 
-              span {
-                color: #1A1A1A;
-                font-size: 14px;
-                font-weight: 500;
-                min-width: 60px;
-              }
+        .auth-links {
+          background: #FFFFFF;
+          border-radius: 8px;
+
+          .auth-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            
+            &:not(:last-child) {
+              border-bottom: 1px solid #E6E6E6;
+              margin-bottom: 0;
+              padding-bottom: 16px;
+            }
+
+            span {
+              color: #1A1A1A;
+              font-size: 15px;
+              font-weight: 600;
+            }
+
+            .auth-buttons {
+              display: flex;
+              gap: 20px;
+              margin-left: auto;
 
               a {
                 color: #2196F3;
-                font-size: 13px;
+                font-size: 14px;
                 text-decoration: none;
-                font-weight: 400;
+                font-weight: 500;
 
                 &:hover {
                   text-decoration: underline;
                 }
-
-                &:not(:last-child) {
-                  margin-right: 16px;
-                }
               }
             }
+          }
         }
       }
     }
 
-    @media (max-width: 992px) {
+    // Mobile/Desktop visibility classes
+    .desktop-only {
+      display: block;
+      
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .mobile-only {
+      display: none;
+      
+      @media (max-width: 768px) {
+        display: block;
+      }
+    }    // Mobile navigation styles
+    @media (max-width: 768px) {
       position: fixed;
       top: 92px;
       left: 0;
       right: 0;
       background: #fff;
-      padding: 1rem;
+      padding: 0;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease;
+      z-index: 1000;
 
       &.active {
-        max-height: 500px;
+        max-height: 100vh;
       }
-    }
 
-    ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: 1.5rem;
-
-      @media (max-width: 992px) {
+      ul {
         flex-direction: column;
-        gap: 1rem;
-      }
-    }
+        gap: 0;
+        padding: 24px;
+        align-items: flex-start;
 
-    li {
-      a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        font-size: 0.85rem;
+        .mobile-auth-sections {
+          background: #FFFFFF;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          margin: 16px auto;
+          padding: 16px 24px;
+          width: 90%;
+          max-width: 320px;
 
-        &:hover {
-          color: #00a3c4;
-        }
-      }
-    }
-
-    .login-dropdown {
-      position: relative;
-
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-weight: 500;
-        font-size: 0.85rem;
-        padding: 0;
-        color: #333;
-
-        &:hover {
-          color: #00a3c4;
-        }
-      }
-
-      .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 1rem;
-        min-width: 200px;
-        margin-top: 0.75rem;
-
-        .dropdown-section {
-          padding: 0.5rem 0;
-
-          &:not(:last-child) {
-            border-bottom: 1px solid #eee;
-            margin-bottom: 0.5rem;
-          }
-
-          h4 {
-            margin: 0 0 0.5rem;
-            color: #666;
-            font-size: 0.85rem;
-          }
-
-          .dropdown-links {
-            display: flex;
-            gap: 1rem;
-
-            a {
-              font-size: 0.8rem;
+          .mobile-auth-section {
+            width: 100%;
+            padding: 12px 0;
+            
+            &:not(:last-child) {
+              border-bottom: 1px solid #E6E6E6;
+              margin-bottom: 4px;
             }
+
+            .mobile-auth-group {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 100%;
+
+              .auth-label {
+                color: #1A1A1A;
+                font-size: 15px;
+                font-weight: 600;
+              }
+
+              .auth-links {
+                display: flex;
+                gap: 20px;
+
+                a {
+                  color: #2196F3;
+                  font-size: 14px;
+                  text-decoration: none;
+                  font-weight: 500;
+
+                  &:hover {
+                    text-decoration: underline;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .mobile-nav-item {
+          width: 100%;
+          padding: 16px 0;
+          border-bottom: 1px solid #E6E6E6;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          a {
+            color: #1A1A1A;
+            font-size: 16px;
+            font-weight: 400;
+            text-decoration: none;
+            flex: 1;
+            padding: 0;
+          }
+
+          .arrow {
+            color: #999;
+            font-size: 16px;
+            margin-left: auto;
           }
         }
       }

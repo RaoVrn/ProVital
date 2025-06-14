@@ -60,13 +60,12 @@ main {
 @import './components/CardGrid.scss';
 
 @media (max-width: 768px) {
-  .header nav ul {
-    flex-direction: column;
+  .container {
+    padding: 0 16px;
   }
-  .hero-section {
-    flex-direction: column;
-  }
-  .card-grid .cards {
-    flex-direction: column;
+  
+  // Ensure proper spacing for mobile
+  main {
+    padding-top: 0;
   }
 }

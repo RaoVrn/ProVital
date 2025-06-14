@@ -202,22 +202,103 @@
 
 @media (max-width: 768px) {
   .card-grid {
+    padding: 2rem 0;
+    width: 100%;
+    overflow-x: hidden;  // Prevent horizontal scroll on the main container
+    
     .container {
       padding: 0 1rem;
+      width: 100%;
     }
 
     .header-wrapper {
       flex-direction: column;
       gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+
+      .title-wrapper h3 {
+        font-size: 24px;
+      }
     }
 
     .navigation-buttons {
       align-self: center;
     }
 
-    .cards-row .card {
-      width: 320px;
-      min-width: 320px;
+    .navigation-tabs {
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+
+      .nav-tab {
+        padding: 6px 16px;
+        font-size: 14px;
+      }
+    }
+
+    .carousel-container {
+      margin: 0;
+      padding: 0 1rem;
+      width: 100%;
+      overflow-x: auto;  // Enable horizontal scroll for the carousel
+      -webkit-overflow-scrolling: touch;  // Smooth scrolling on iOS
+      scrollbar-width: none;  // Hide scrollbar on Firefox
+      &::-webkit-scrollbar {
+        display: none;  // Hide scrollbar on Chrome/Safari
+      }
+    }
+
+    .cards-row {
+      gap: 16px;
+      padding: 10px 0 20px;
+      width: auto;
+      display: flex;
+      flex-wrap: nowrap;
+
+      .card {
+        width: 85vw;  // Make cards take most of the viewport width
+        min-width: 280px;  // But not smaller than 280px
+        max-width: 380px;  // And not larger than desktop size
+        margin-right: 16px;  // Add spacing between cards
+        flex-shrink: 0;  // Prevent cards from shrinking
+
+        &:last-child {
+          margin-right: 1rem;  // Add padding after the last card
+        }
+
+        .card-image {
+          height: 200px;
+
+          .metric {
+            bottom: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            font-size: 12px;
+
+            svg {
+              font-size: 12px;
+            }
+          }
+        }
+
+        .card-content {
+          padding: 20px;
+
+          h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: 14px;
+            line-height: 1.5;
+          }
+        }
+      }
     }
   }
 }
